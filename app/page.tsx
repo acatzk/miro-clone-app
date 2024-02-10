@@ -1,10 +1,12 @@
-import { Button } from '~/components/ui/button'
+import { UserButton } from '@clerk/nextjs'
 
 export default function Home(): JSX.Element {
   return (
-    <div>
-      <p className="text-2xl font-bold text-primary">Mero Page</p>
-      <Button variant="destructive">Button</Button>
+    <div className="gapy-4 flex flex-col">
+      <p>This is a screen for authenticated users only.</p>
+      <div>
+        <UserButton />
+      </div>
     </div>
   )
 }
