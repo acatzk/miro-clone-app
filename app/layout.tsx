@@ -16,8 +16,6 @@ type RootLayoutProps = {
   children: ReactNode
 }
 
-export const runtime = 'edge'
-
 export default function RootLayout({ children }: Readonly<RootLayoutProps>): JSX.Element {
   return (
     <html lang="en">
