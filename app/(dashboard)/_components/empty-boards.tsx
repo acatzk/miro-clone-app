@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { toast } from 'sonner'
+import { useRouter } from 'next/navigation'
 import { useOrganization } from '@clerk/nextjs'
 
 import { api } from '~/convex/_generated/api'
@@ -9,6 +10,7 @@ import { Button } from '~/components/ui/button'
 import { useApiMutation } from '~/hooks/use-api-mutation'
 
 export const EmptyBoards = (): JSX.Element => {
+  const router = useRouter()
   const { organization } = useOrganization()
   const { mutate, pending } = useApiMutation(api.board.create)
 
@@ -19,7 +21,7 @@ export const EmptyBoards = (): JSX.Element => {
       orgId: organization?.id,
       title: 'Untitled'
     }).then((id) => {
-      // TODO: Redirect to board/{id}
+      router.push(`/board/${id}`)
     })
 
     toast.promise(promise, {
