@@ -2,6 +2,7 @@
 
 import { toast } from 'sonner'
 import { PlusIcon } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 import { cn } from '~/lib/utils'
 import { api } from '~/convex/_generated/api'
@@ -13,6 +14,7 @@ type NewBoardButtonProps = {
 }
 
 export const NewBoardButton = ({ orgId, disabled }: NewBoardButtonProps): JSX.Element => {
+  const router = useRouter()
   const { mutate, pending } = useApiMutation(api.board.create)
 
   const onClick = (): void => {
@@ -20,7 +22,7 @@ export const NewBoardButton = ({ orgId, disabled }: NewBoardButtonProps): JSX.El
       orgId,
       title: 'Untitled'
     }).then((id) => {
-      // TODO: Redirect to board/{id}
+      router.push(`/board/${id}`)
     })
 
     toast.promise(promise, {
