@@ -1,6 +1,9 @@
 import React from 'react'
 
+import { Room } from '~/components/room'
+
 import { Canvas } from './_components/canvas'
+import { Loading } from './_components/loading'
 
 type BoardIdPageProps = {
   params: {
@@ -9,5 +12,9 @@ type BoardIdPageProps = {
 }
 
 export default function BoardIdPage({ params }: BoardIdPageProps): JSX.Element {
-  return <Canvas boardId={params.boardId} />
+  return (
+    <Room roomId={params.boardId} fallback={<Loading />}>
+      <Canvas boardId={params.boardId} />
+    </Room>
+  )
 }
